@@ -1,7 +1,7 @@
 Kronologi:
 
 ```mermaid
-graph LR
+graph TD
 A[Bayu] ----> B((bunder))
 A --ide Bayu--> C(web aduan masyarakat)
 B --> D{Semua setuju}
