@@ -1,3 +1,13 @@
+<?php
+session_start();
+
+if (!$_SESSION['email']) {
+    header("Location: login.php");
+    exit();
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,3 +20,4 @@
     <p>Welcome <?php echo "abc" ?></p>
 </body>
 </html>
+

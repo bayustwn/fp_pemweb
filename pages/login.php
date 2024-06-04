@@ -2,13 +2,37 @@
 include "../db/koneksi.php";
 session_start();
 
-$email = $_POST["email"];
-$pass = $_POST["password"];
+if (isset($_SESSION['email'])) {
+    header("Location: home.php");
+    exit();
+} else {
+    if (isset($_POST['submit'])) {
+        $email = $_POST["email"];
+        $pass = $_POST["pass"];
 
-$login = "SELECT * FROM user WHERE email = $email AND pass = $pass";
-$res = mysqli_query($conn,$login);
+        $query = "SELECT * FROM user WHERE email = '$email'";
+        $result = mysqli_query($conn, $query);
 
+            if (mysqli_num_rows($result) == 1) {
+                $user = mysqli_fetch_assoc($result);
+                if (password_verify($pass, $user['password'])) {
+                    $_SESSION['email'] = $email;
+                    header("Location: home.php");
+                    exit();
+                } else {
+                    header("Location: login.php");
+                    $_SESSION['message'] = "Email atau password salah.";
+                    exit();
+                }
+            } else {
+                header("Location: login.php");
+                $_SESSION['message'] = "Email atau password salah.";
+                exit();
+            }
+    }
+}
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -18,11 +42,19 @@ $res = mysqli_query($conn,$login);
     <title>Login</title>
 </head>
 <body>
-    <form action="../logic/login.php" method="post">
+    <p>
+        <?php
+            if (isset($_SESSION['message'])) {
+                echo $_SESSION['message'];
+                unset($_SESSION['message']);
+            }
+        ?>
+    </p>
+    <form action="" method="post">
         <h1>Login</h1>
-        <input type="email" name="email" id="email">
-        <input type="password" name="password" id="pass">
-        <button type="submit">Login</button>
+        <input type="email" name="email" required>
+        <input type="password" name="pass" required>
+        <button type="submit" name="submit">Login</button>
     </form>
 </body>
 </html>
