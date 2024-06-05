@@ -2,10 +2,8 @@
 include "../db/koneksi.php";
 session_start();
 
-include "../util/isLogin.php";
-
 if (isset($_SESSION['email'])) {
-    header("Location: home.php");
+    header("Location: cafe.php");
     exit();
 }else{
     if (isset($_POST['submit'])) {
@@ -20,7 +18,7 @@ if (isset($_SESSION['email'])) {
             $user = mysqli_fetch_assoc($result);
             if (password_verify($password, $user['password'])) {
                 $_SESSION['email'] = $email;
-                header("Location: home.php");
+                header("Location: cafe.php");
                 exit();
             } else {
                 header("Location: login.php");

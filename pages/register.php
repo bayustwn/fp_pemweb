@@ -13,7 +13,7 @@ function uuidv4()
 }
 
 if (isset($_SESSION['email'])) {
-    header("Location: home.php");
+    header("Location: cafe.php");
     exit();
 } else {
     if (isset($_POST["submit"])) {
@@ -50,7 +50,7 @@ if (isset($_SESSION['email'])) {
                     $email = "";
                     $pass = "";
                     $confirmPass = "";
-                    header("Location: home.php");
+                    header("Location: cafe.php");
                     exit();
                 } 
             }
