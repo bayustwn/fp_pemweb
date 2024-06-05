@@ -56,7 +56,7 @@ if (isset($_SESSION['email'])) {
             }
         } else {
             header("Location: register.php");
-            $_SESSION['message'] = "Email, Password, dan Konfirmasi Password tidak boleh kosong!";
+            $_SESSION['message'] = "Form tidak boleh kosong!";
             exit();
         }
     }

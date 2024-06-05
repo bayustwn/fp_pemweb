@@ -2,37 +2,42 @@
 include "../db/koneksi.php";
 session_start();
 
+include "../util/isLogin.php";
+
 if (isset($_SESSION['email'])) {
     header("Location: home.php");
     exit();
-} else {
+}else{
     if (isset($_POST['submit'])) {
-        $email = $_POST["email"];
-        $pass = $_POST["pass"];
+    $email = $_POST["email"];
+    $pass = $_POST["pass"];
 
-        $query = "SELECT * FROM user WHERE email = '$email'";
-        $result = mysqli_query($conn, $query);
+    $query = "SELECT * FROM user WHERE email = '$email'";
+    $result = mysqli_query($conn, $query);
 
-            if (mysqli_num_rows($result) == 1) {
-                $user = mysqli_fetch_assoc($result);
-                if (password_verify($pass, $user['password'])) {
-                    $_SESSION['email'] = $email;
-                    header("Location: home.php");
-                    exit();
-                } else {
-                    header("Location: login.php");
-                    $_SESSION['message'] = "Email atau password salah.";
-                    exit();
-                }
+    if ($result) {
+        if (mysqli_num_rows($result) == 1) {
+            $user = mysqli_fetch_assoc($result);
+            if (password_verify($password, $user['password'])) {
+                $_SESSION['email'] = $email;
+                header("Location: home.php");
+                exit();
             } else {
                 header("Location: login.php");
                 $_SESSION['message'] = "Email atau password salah.";
                 exit();
             }
+        } else {
+            header("Location: login.php");
+            $_SESSION['message'] = "Email atau password salah.";
+            exit();
+        }
     }
 }
-?>
+}
 
+
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -54,7 +59,7 @@ if (isset($_SESSION['email'])) {
         <h1>Login</h1>
         <input type="email" name="email" required>
         <input type="password" name="pass" required>
-        <button type="submit" name="submit">Login</button>
+        <button type="submit" name="submit" >Login</button>
     </form>
 </body>
 </html>
