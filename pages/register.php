@@ -20,13 +20,14 @@ if (isset($_SESSION['email'])) {
         $email = $_POST['email'];
         $pass = $_POST['pass'];
         $confirmPass = $_POST['confirm-pass'];
-        
+
         if ($email != "" && $pass != "" && $confirmPass != "") {
             if ($pass !== $confirmPass) {
-                $_SESSION['message'] = "Password tidak cocok dengan konfirmasi.";
+                header("Location: register.php");
+                $_SESSION['message'] = "Password tidak cocok dengan konfirmasi password.";
                 exit();
             }
-            
+
             $role = "user";
             $uuid = uuidv4();
 
@@ -52,7 +53,7 @@ if (isset($_SESSION['email'])) {
                     $confirmPass = "";
                     header("Location: cafe.php");
                     exit();
-                } 
+                }
             }
         } else {
             header("Location: register.php");
@@ -69,20 +70,43 @@ if (isset($_SESSION['email'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Register</title>
+    <link rel="stylesheet" href="./style/register.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
 </head>
 <body>
-    <p>
-    <?php 
-        if (isset($_SESSION['message'])) {
-            echo $_SESSION['message'];
-            unset($_SESSION['message']); 
-        }
-    ?></p>
-<form action="" method="post">
-    <input type="text" name="email" required>
-    <input type="password" name="pass" required>
-    <input type="password" name="confirm-pass" required>
-    <button type="submit" name="submit">Register</button>
-</form>
+    <div class="form-container">
+        <h1>Register</h1>
+        <form action="" method="post">
+            <input type="email" name="email" placeholder="Email" required>
+            <input type="password" name="pass" placeholder="Password" required>
+            <input type="password" name="confirm-pass" placeholder="Confirm Password" required>
+            <button type="submit" name="submit">Register</button>
+        </form>
+        <?php
+if (isset($_SESSION['message'])) {
+    $msg = htmlspecialchars($_SESSION['message']);
+    echo "<p class='message'>$msg</p>";
+    unset($_SESSION['message']);
+}
+?>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            var messageElement = document.querySelector(".message");
+            var formElements = document.querySelectorAll("input[name='email'], input[name='pass'], input[name='confirm-pass']");
+
+            if (messageElement) {
+                formElements.forEach(function(element) {
+                    element.addEventListener("focus", function() {
+                        messageElement.style.display = "none";
+                    });
+                });
+            }
+        });
+    </script>
+
 </body>
 </html>

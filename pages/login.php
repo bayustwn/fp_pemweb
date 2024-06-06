@@ -43,21 +43,40 @@ if (isset($_SESSION['email'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./style/login.css">
 </head>
 <body>
-    <p>
-        <?php
-            if (isset($_SESSION['message'])) {
-                echo $_SESSION['message'];
-                unset($_SESSION['message']);
-            }
-        ?>
-    </p>
+<div class="form-container">
     <form action="" method="post">
         <h1>Login</h1>
-        <input type="email" name="email" required>
-        <input type="password" name="pass" required>
+        <input type="email" name="email" placeholder="Email" required>
+        <input type="password" name="pass" placeholder="Password" required>
         <button type="submit" name="submit" >Login</button>
     </form>
+    <?php
+if (isset($_SESSION['message'])) {
+    $msg = htmlspecialchars($_SESSION['message']);
+    echo "<p class='message'>$msg</p>";
+    unset($_SESSION['message']);
+}
+?>
+</div>
+<script>
+        document.addEventListener("DOMContentLoaded", function() {
+            var messageElement = document.querySelector(".message");
+            var formElements = document.querySelectorAll("input[name='email'], input[name='pass'], input[name='confirm-pass']");
+
+            if (messageElement) {
+                formElements.forEach(function(element) {
+                    element.addEventListener("focus", function() {
+                        messageElement.style.display = "none";
+                    });
+                });
+            }
+        });
+    </script>
 </body>
 </html>
