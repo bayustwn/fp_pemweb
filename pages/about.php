@@ -12,11 +12,11 @@
 <body>
 <div class="navbar">
         <ul class="menu">
-            <li><a href="">Home</a></li>
-            <li><a href="./pages/about.php">About</a></li>
-            <li class="logo"><a>infongopi.</a></li>
-            <li><a href="./pages/cafe.php">List</a></li>
-            <li><a href="#">Contact</a></li>
+            <li><a href="../index.html">Home</a></li>
+            <li><a href="">About</a></li>
+            <li class="logo"><a href="../index.html">infongopi.</a></li>
+            <li><a href="cafe.php">List</a></li>
+            <li><a href="../index.html">Contact</a></li>
         </ul>
         <div class="auth-button">
             <a href="./pages/register.php" class="button">Register</a>
@@ -75,6 +75,6 @@
     </div>
     <div class="footer">
             <p>Copyright infongopi.</p>
-        </div>
+    </div>
 </body>
 </html>

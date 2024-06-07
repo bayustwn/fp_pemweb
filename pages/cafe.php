@@ -22,9 +22,9 @@ $result = $conn->query($cafe);
 <div class="navbar">
         <ul class="menu">
             <li><a href="../index.html">Home</a></li>
-            <li><a href="#">About</a></li>
-            <li class="logo"><a href="#">infongopi.</a></li>
-            <li><a href="#">List</a></li>
+            <li><a href="./about.php">About</a></li>
+            <li class="logo"><a href="../index.html">infongopi.</a></li>
+            <li><a href="">List</a></li>
             <li><a href="#">Contact</a></li>
         </ul>
         <img class="profile" src="../public/assets/profile-icon.svg" alt="profile">
