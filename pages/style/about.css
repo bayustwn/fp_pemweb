@@ -193,7 +193,8 @@ body{
 }
 
 .footer p{
-    padding: 10px 0px;
+    font-family: "Krona One";
+    padding-top: 70px;
     color: white;
     margin: 0px;
 }
