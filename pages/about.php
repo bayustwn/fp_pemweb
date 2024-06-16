@@ -1,3 +1,10 @@
+<?php
+if (!isset($_SESSION['email'])) {
+    session_start();
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,16 +19,26 @@
 <body>
 <div class="navbar">
         <ul class="menu">
-            <li><a href="../index.html">Home</a></li>
+            <li><a href="../index.php">Home</a></li>
             <li><a href="">About</a></li>
-            <li class="logo"><a href="../index.html">infongopi.</a></li>
+            <li class="logo"><a href="../index.php">infongopi.</a></li>
             <li><a href="cafe.php">List</a></li>
-            <li><a href="../index.html">Contact</a></li>
+            <li><a href="../index.php">Contact</a></li>
         </ul>
-        <div class="auth-button">
-            <a href="./pages/register.php" class="button">Register</a>
-            <a href="./pages/login.php" class="button">Login</a>
-        </div>
+        <?php
+
+if (!isset($_SESSION['email'])) {
+    echo '
+    <div class="auth-button">
+        <a href="./pages/register.php" class="button">Register</a>
+        <a href="./pages/login.php" class="button">Login</a>
+    </div>';
+}else{
+    echo '
+    <img class="profile" src="../public/assets/profile-icon.svg" alt="profile">';
+}
+
+        ?>
     </div>
     <div class="content">
         <div class="title">

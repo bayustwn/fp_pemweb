@@ -185,6 +185,12 @@ body{
     padding-right: 40px;
 }
 
+.profile{
+    position: absolute;
+    width: 20px;
+    right: 60px;
+}
+
 .footer{
     width: 100%;
     text-align: center;

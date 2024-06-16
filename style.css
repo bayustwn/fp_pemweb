@@ -47,6 +47,12 @@ body {
     font-family: "Italiana";
 }
 
+.profile{
+    position: absolute;
+    width: 20px;
+    right: 60px;
+}
+
 .auth-button {
     position: absolute;
     right: 20px;

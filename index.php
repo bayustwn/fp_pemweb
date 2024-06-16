@@ -1,3 +1,10 @@
+<?php
+if (!isset($_SESSION['email'])) {
+    session_start();
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -18,10 +25,20 @@
             <li><a href="./pages/cafe.php">List</a></li>
             <li><a href="#contact-container">Contact</a></li>
         </ul>
-        <div class="auth-button">
-            <a href="./pages/register.php" class="button">Register</a>
-            <a href="./pages/login.php" class="button">Login</a>
-        </div>
+        <?php
+        
+            if (!isset($_SESSION['email'])) {
+                echo '
+                <div class="auth-button">
+                    <a href="./pages/register.php" class="button">Register</a>
+                    <a href="./pages/login.php" class="button">Login</a>
+                </div>';
+            }else{
+                echo '
+                <img class="profile" src="./public/assets/profile-icon.svg" alt="profile">';
+            }
+
+        ?>
     </div>
     <div class="content">
             <h1>Bingung ngopi bosq?
