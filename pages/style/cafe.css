@@ -1,6 +1,7 @@
 body{
     margin: 0px;
     background-color: #1A1A1A;
+    overflow-y: scroll;
 }
 .navbar {
     display: flex;
