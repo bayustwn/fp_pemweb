@@ -16,7 +16,7 @@ if (isset($_SESSION['email'])) {
     if ($result) {
         if (mysqli_num_rows($result) == 1) {
             $user = mysqli_fetch_assoc($result);
-            if (password_verify($password, $user['password'])) {
+            if (password_verify($pass, $user['password'])) {
                 $_SESSION['email'] = $email;
                 header("Location: cafe.php");
                 exit();
