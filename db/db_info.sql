@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Jun 16, 2024 at 11:18 AM
+-- Generation Time: Jun 16, 2024 at 01:06 PM
 -- Server version: 8.0.30
 -- PHP Version: 8.2.19
 
@@ -34,15 +34,19 @@ CREATE TABLE `cafe` (
   `lokasi` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   `deskripsi` mediumtext CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci,
   `pro` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci,
-  `cons` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci
+  `cons` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci,
+  `jam_buka` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `jam_tutup` varchar(255) COLLATE utf8mb4_general_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `cafe`
 --
 
-INSERT INTO `cafe` (`id`, `nama`, `foto`, `lokasi`, `deskripsi`, `pro`, `cons`) VALUES
-('0c9a6e4f-0802-4ad3-8bb3-bd49f3e85109', 'PatDua', '', 'Jl.Depan Upn', 'Cafe view depan upn', 'tempat bersih, sejuk, pelayanan ramah', 'tukang parkir liar, tempat duduk terbatas');
+INSERT INTO `cafe` (`id`, `nama`, `foto`, `lokasi`, `deskripsi`, `pro`, `cons`, `jam_buka`, `jam_tutup`) VALUES
+('0c9a6e4f-0802-4ad3-8bb3-bd49f3e85109', 'PatDua', NULL, 'Jl.Depan Upn', 'Cafe view depan upn', 'tempat bersih, sejuk, pelayanan ramah', 'tukang parkir liar, tempat duduk terbatas', '10:30', '23:00'),
+('0c9a6e4f-0802-4ad3-8bb3-bd49f3e85110', 'Tampan', NULL, 'Jl.Depan Upn', 'Cafe view depan upn', 'tempat bersih, sejuk, pelayanan ramah', 'tukang parkir liar, tempat duduk terbatas', '08:30', '22:00'),
+('0c9a6e4f-0802-4ad3-8bb3-bd49f3e90110', 'Tengo', NULL, 'Jl.Depan Upn', 'Cafe view depan upn', 'tempat bersih, sejuk, pelayanan ramah', 'tukang parkir liar, tempat duduk terbatas', '07:00', '15:20');
 
 -- --------------------------------------------------------
 
