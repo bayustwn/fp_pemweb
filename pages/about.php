@@ -30,8 +30,8 @@ if (!isset($_SESSION['email'])) {
 if (!isset($_SESSION['email'])) {
     echo '
     <div class="auth-button">
-        <a href="./pages/register.php" class="button">Register</a>
-        <a href="./pages/login.php" class="button">Login</a>
+        <a href="register.php" class="button">Register</a>
+        <a href="login.php" class="button">Login</a>
     </div>';
 }else{
     echo '
