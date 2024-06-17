@@ -105,7 +105,7 @@ if (isset($_POST['update'])) {
                 <input type="text" value="' . htmlspecialchars($cafe['jam_tutup'] ?? '') . '" name="jamTutup">
                 
                 <label for="foto">Foto Cafe</label>
-                <input type="file" id="foto" name="foto" accept="image/*" onchange="previewImage(event)">
+                <input type="file" value="'.htmlspecialchars($cafe['foto'] ?? '').'" id="foto" name="foto" accept="image/*" onchange="previewImage(event)">
                 <img id="preview" src="' . htmlspecialchars($cafe['foto'] ?? '') . '" style="height:250px;object-fit:cover;">
                 
                 <button type="submit" name="update" value="update">Simpan Perubahan</button>

@@ -43,7 +43,7 @@ if(isset($_POST['submit'])){
         <button type="submit" class="cari">Cari</button>
     </form>
     <div class="tambah-container">
-    <a href="tambahCafe.php"><button class="tambah">Tambah Cafe</button></a>
+        <a href="tambahCafe.php"><button class="tambah">Tambah Cafe</button></a>
     </div>
     <div class="cafe-container">
     <?php
@@ -54,27 +54,30 @@ if(isset($_POST['submit'])){
         if ($res->num_rows > 0) {
             while ($row = mysqli_fetch_assoc($res)) {
                 echo '
-        <div class="cafe">
-            <div class="cafe-img">
-                <img src="'. htmlspecialchars($row['foto'] ?? "../public/cafe/placeholder.jpg") . '" alt="cafe">
-            </div>
-            <div class="cafe-desc">
-                <div class="title">
-                    <h2>' . htmlspecialchars($row['nama']) . '</h2>
-                    <a onClick="edit(\''.htmlspecialchars($row['id']).'\')"><img src="../public/assets/pencil-icon.svg" alt="edit"></a>
-                </div>
-                <p>' . htmlspecialchars($row['lokasi']) . '</p>
-                <p>' . htmlspecialchars($row['deskripsi']) . '</p>
-                <div class="time-container">
-                    <img src="../public/assets/time.svg" alt="clock">
-                    <p>' . htmlspecialchars($row['jam_buka']) . ' - ' . htmlspecialchars($row['jam_tutup']) . '</p>
-                </div>
-                <form action="" method="POST">
-                    <input type="hidden" name="submit" value="'. htmlspecialchars($row['id']) .'">
-                    <input class="baca" type="submit" value="Baca Selengkapnya">
-                </form>
-            </div>
-        </div>';
+                <div class="cafe">
+                    <div class="cafe-img">
+                        <img src="'. htmlspecialchars($row['foto'] ?? "../public/cafe/placeholder.jpg") . '" alt="cafe">
+                    </div>
+                    <div class="cafe-desc">
+                        <div class="title">
+                            <h2>' . htmlspecialchars($row['nama']) . '</h2>
+                            <div class="btn">
+                                <a onClick="edit(\''.htmlspecialchars($row['id']).'\')"><img src="../public/assets/pencil-icon.svg" alt="edit"></a>
+                                <a onClick="confirmDelete(\''.htmlspecialchars($row['id']).'\')"><img src="../public/assets/trash-icon.svg" alt="hapus"></a>
+                            </div>
+                        </div>
+                        <p>' . htmlspecialchars($row['lokasi']) . '</p>
+                        <p>' . htmlspecialchars($row['deskripsi']) . '</p>
+                        <div class="time-container">
+                            <img src="../public/assets/time.svg" alt="clock">
+                            <p>' . htmlspecialchars($row['jam_buka']) . ' - ' . htmlspecialchars($row['jam_tutup']) . '</p>
+                        </div>
+                        <form action="" method="POST">
+                            <input type="hidden" name="submit" value="'. htmlspecialchars($row['id']) .'">
+                            <input class="baca" type="submit" value="Baca Selengkapnya">
+                        </form>
+                    </div>
+                </div>';
             }
         } else {
             echo '<p class="tidak">Tidak ada cafe ditemukan.</p>';
@@ -83,27 +86,30 @@ if(isset($_POST['submit'])){
         if ($result->num_rows > 0) {
             while ($row = mysqli_fetch_assoc($result)) {
                 echo '
-        <div class="cafe">
-            <div class="cafe-img">
-                <img src="'. htmlspecialchars($row['foto'] ?? "../public/cafe/placeholder.jpg") . '" alt="cafe">
-            </div>
-            <div class="cafe-desc">
-            <div class="title">
-                <h2>' . htmlspecialchars($row['nama']) . '</h2>
-                <a onClick="edit(\''.htmlspecialchars($row['id']).'\')"><img src="../public/assets/pencil-icon.svg" alt="edit"></a>
-            </div>
-                <p>' . htmlspecialchars($row['lokasi']) . '</p>
-                <p>' . htmlspecialchars($row['deskripsi']) . '</p>
-                <div class="time-container">
-                    <img src="../public/assets/time.svg" alt="clock">
-                    <p>' . htmlspecialchars($row['jam_buka']) . ' - ' . htmlspecialchars($row['jam_tutup']) . '</p>
-                </div>
-                <form action="" method="POST">
-                    <input type="hidden" name="submit" value="'. htmlspecialchars($row['id']) .'">
-                    <input class="baca" type="submit" value="Baca Selengkapnya">
-                </form>
-            </div>
-        </div>';
+                <div class="cafe">
+                    <div class="cafe-img">
+                        <img src="'. htmlspecialchars($row['foto'] ?? "../public/cafe/placeholder.jpg") . '" alt="cafe">
+                    </div>
+                    <div class="cafe-desc">
+                        <div class="title">
+                            <h2>' . htmlspecialchars($row['nama']) . '</h2>
+                            <div class="btn">
+                                <a onClick="edit(\''.htmlspecialchars($row['id']).'\')"><img src="../public/assets/pencil-icon.svg" alt="edit"></a>
+                                <a onClick="confirmDelete(\''.htmlspecialchars($row['id']).'\')"><img src="../public/assets/trash-icon.svg" alt="hapus"></a>
+                            </div>
+                        </div>
+                        <p>' . htmlspecialchars($row['lokasi']) . '</p>
+                        <p>' . htmlspecialchars($row['deskripsi']) . '</p>
+                        <div class="time-container">
+                            <img src="../public/assets/time.svg" alt="clock">
+                            <p>' . htmlspecialchars($row['jam_buka']) . ' - ' . htmlspecialchars($row['jam_tutup']) . '</p>
+                        </div>
+                        <form action="" method="POST">
+                            <input type="hidden" name="submit" value="'. htmlspecialchars($row['id']) .'">
+                            <input class="baca" type="submit" value="Baca Selengkapnya">
+                        </form>
+                    </div>
+                </div>';
             }
         } else {
             echo '<p class="tidak">Tidak ada cafe ditemukan.</p>';
@@ -114,6 +120,12 @@ if(isset($_POST['submit'])){
     <script>
         function edit(id) {
             window.location.href = "/pages/editCafe.php?cafe=" + id ;
+        }
+
+        function confirmDelete(id) {
+            if (confirm("Apakah Anda yakin ingin menghapus kafe ini?")) {
+                window.location.href = "deleteCafe.php?id=" + id;
+            }
         }
     </script>
 </body>
