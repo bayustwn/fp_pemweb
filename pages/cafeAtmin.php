@@ -2,11 +2,6 @@
 include "../util/isLogin.php";
 include "../db/koneksi.php";
 
-if ($_SESSION['role'] = "admin") {
-    header("Location: cafeAtmin.php");
-    exit();
-}
-
 $cafe = "SELECT * FROM cafe";
 $result = $conn->query($cafe);
 
@@ -43,10 +38,13 @@ if(isset($_POST['submit'])){
     <form action="" method="GET" class="search-container">
         <div class="search">
             <img src="../public/assets/search-icon.svg" alt="seach-icon">
-            <input type="text" name="cari" placeholder="Masukkan lokasi daerah anda" value="<?php echo htmlspecialchars($_GET['cari'] ?? '', ENT_QUOTES); ?>">
+            <input type="text" name="cari" placeholder="Masukkan lokasi daerah" value="<?php echo htmlspecialchars($_GET['cari'] ?? '', ENT_QUOTES); ?>">
         </div>
         <button type="submit" class="cari">Cari</button>
     </form>
+    <div class="tambah-container">
+    <button class="tambah">Tambah Cafe</button>
+    </div>
     <div class="cafe-container">
     <?php
     if(isset($_GET['cari'])){
@@ -58,10 +56,13 @@ if(isset($_POST['submit'])){
                 echo '
         <div class="cafe">
             <div class="cafe-img">
-                <img src="'.htmlspecialchars($row['foto'] ?? "../public/cafe/placeholder.jpg") . '" alt="cafe">
+                <img src="'. htmlspecialchars($row['foto'] ?? "../public/cafe/placeholder.jpg") . '" alt="cafe">
             </div>
             <div class="cafe-desc">
-                <h2>' . htmlspecialchars($row['nama']) . '</h2>
+                <div class="title">
+                    <h2>' . htmlspecialchars($row['nama']) . '</h2>
+                    <a onClick="edit(\''.htmlspecialchars($row['id']).'\')"><img src="../public/assets/pencil-icon.svg" alt="edit"></a>
+                </div>
                 <p>' . htmlspecialchars($row['lokasi']) . '</p>
                 <p>' . htmlspecialchars($row['deskripsi']) . '</p>
                 <div class="time-container">
@@ -84,10 +85,13 @@ if(isset($_POST['submit'])){
                 echo '
         <div class="cafe">
             <div class="cafe-img">
-                <img src="'.htmlspecialchars($row['foto'] ?? "../public/cafe/placeholder.jpg") . '" alt="cafe">
+                <img src="'. htmlspecialchars($row['foto'] ?? "../public/cafe/placeholder.jpg") . '" alt="cafe">
             </div>
             <div class="cafe-desc">
+            <div class="title">
                 <h2>' . htmlspecialchars($row['nama']) . '</h2>
+                <a onClick="edit(\''.htmlspecialchars($row['id']).'\')"><img src="../public/assets/pencil-icon.svg" alt="edit"></a>
+            </div>
                 <p>' . htmlspecialchars($row['lokasi']) . '</p>
                 <p>' . htmlspecialchars($row['deskripsi']) . '</p>
                 <div class="time-container">
@@ -107,5 +111,10 @@ if(isset($_POST['submit'])){
     }
     ?>
     </div>
+    <script>
+        function edit(id) {
+            window.location.href = "/pages/editCafe.php?cafe=" + id ;
+        }
+    </script>
 </body>
 </html>

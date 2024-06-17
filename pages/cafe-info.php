@@ -129,7 +129,7 @@ if (isset($_POST['submit'])) {
 </div>
 
 <div class="comment-container">
-  <h1>Komentar user</h1>
+  <h1>Komentar</h1>
   <div class="komentar">
     <?php
     while ($komen = $komentar_res->fetch_assoc()) {
