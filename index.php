@@ -50,7 +50,12 @@ if (!isset($_SESSION['email'])) {
         </div>
     </div>
     <div id="contact-container" class="contact-container">
+    <div class="head">
+            <h2> Contact Us</h2>
+        </div>
+    <div class="line"></div>
     <div class="contact">
+        
         <div class="social-icons">
             <a href="https://instagram.com/bayst_n" target="_blank"><img src="./public/assets/instagram-icon.svg" alt="Instagram"></a>
         </div>

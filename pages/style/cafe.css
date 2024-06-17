@@ -7,7 +7,9 @@ body{
     display: flex;
     justify-content: center;
     padding: 30px 20px;
-    position: relative;
+    position: sticky;
+    top: 0;
+    -index: 100;
     background: rgb(77,71,68);
     background: linear-gradient(0deg, rgba(77,71,68,1) 0%, rgba(0,0,0,1) 65%, rgba(0,0,0,1) 100%);
 }
