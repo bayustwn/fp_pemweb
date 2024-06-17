@@ -10,6 +10,15 @@ function uuidv4()
     return vsprintf('%s%s-%s-%s-%s-%s%s%s', str_split(bin2hex($data), 4));
 }
 
+function uuidv4Menu()
+{
+    $data = random_bytes(16);
+    $data[6] = chr(ord($data[6]) & 0x0f | 0x40);
+    $data[8] = chr(ord($data[8]) & 0x3f | 0x80);
+    return vsprintf('%s%s-%s-%s-%s-%s%s%s', str_split(bin2hex($data), 4));
+}
+
+
 $id = isset($_GET['id']) ? ($_GET['id']) : '';
 
 $query = "SELECT * FROM cafe WHERE id=$id";
@@ -71,6 +80,27 @@ if (isset($_POST['submit'])) {
         echo "Komentar tidak boleh kosong.";
     }
 }
+
+$menu = "SELECT * FROM menu WHERE cafe=$cafeId";
+$menu_res = $conn->query($menu);
+
+if (isset($_POST['tambah'])) {
+    $nama_menu = $_POST['nama-menu'];
+    $harga = $_POST['harga-menu'];
+
+    $id_menu = uuidv4Menu();
+
+    $add_menu_query = "INSERT INTO menu (id,nama,harga,cafe) VALUES ('$id_menu','$nama_menu','$harga',$cafeId)";
+    
+    if ($conn->query($add_menu_query) === TRUE) {
+        header("Location: cafe-info.php?id=$cafeId");
+        exit();
+    } else {
+        header("Location: cafe-info.php?id=$cafeId");
+        exit();
+    }
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -110,22 +140,32 @@ if (isset($_POST['submit'])) {
     <p><strong>Cons: </strong><?php echo htmlspecialchars($cafe['cons'], ENT_QUOTES, 'UTF-8'); ?></p>
   </div>
   <div class="gambar">
-    <img src="../public/cafe/<?php echo htmlspecialchars($cafe['foto'] ?? "placeholder.jpg", ENT_QUOTES, 'UTF-8'); ?>" alt="cafe">
+    <img src="<?php echo htmlspecialchars($cafe['foto'] ?? "../public/cafe/placeholder.jpg", ENT_QUOTES, 'UTF-8'); ?>" alt="cafe">
   </div>
 </div>
 
 <div class="menu-container">
   <h1>Menu Cafe</h1>
   <div class="menu-cafe">
-    <div class="menu-item">
-      <h3>Nama Menu</h3>
-      <p>Rp.2000</p>
-    </div>
-    <div class="menu-item">
-      <h3>Nama Menu</h3>
-      <p>Rp.2000</p>
-    </div>
+    <?php
+        while($menus = mysqli_fetch_assoc($menu_res)){
+            echo '
+            <div class="menu-item">
+                <h3>'. htmlspecialchars($menus['nama']) .'</h3>
+                <p>'. htmlspecialchars($menus['harga']) .'</p>
+            </div>';
+        }
+    ?>
   </div>
+  <?php
+    if ($_POST['role']="admin") {
+        echo '<form action="" method="POST" class="tambah-menu">
+        <input type="text" name="nama-menu" placeholder="nama">
+        <input type="text" name="harga-menu" placeholder="harga">
+        <input type="submit" value="Tambah" name="tambah">
+      </form>';
+    }
+  ?>
 </div>
 
 <div class="comment-container">
