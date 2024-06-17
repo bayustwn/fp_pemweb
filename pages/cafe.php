@@ -36,7 +36,7 @@ if(isset($_POST['submit'])){
             <li><a href="./about.php">About</a></li>
             <li class="logo"><a href="../index.php">infongopi.</a></li>
             <li><a href="">List</a></li>
-            <li><a href="#">Contact</a></li>
+            <li><a href="../index.php#contact-container">Contact</a></li>
         </ul>
         <a href="./account.php"><img class="profile" src="../public/assets/profile-icon.svg" alt="profile"></a>
     </div>

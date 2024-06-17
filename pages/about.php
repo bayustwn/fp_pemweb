@@ -68,23 +68,23 @@ if (!isset($_SESSION['email'])) {
                     </div>
                     <div>
                         <p>Muhammad Hilmy Aziz</p>
-                        <p>Aziz@gmail.com</p>
+                        <p>mhaziz03@gmail.com</p>
                     </div>
                 </div>
                 <div class="row-1">
                     <div class="raja">
                         <p>Rajawali Shaktika Anugrah Prasetya</p>
-                        <p>Khususpby@gmail.com</p>
+                        <p>Rajawali@gmail.com</p>
                     </div>
                     <div class="bagus">
                         <p>Bagus Satrio Wicaksono</p>
-                        <p>Aziz@gmail.com</p>
+                        <p>Bagus@gmail.com</p>
                     </div>
                 </div>
                 <div class="row-1">
                     <div class="akbar">
                         <p>Muhammad Akbar Nurdianto</p>
-                        <p>Khususpby@gmail.com</p>
+                        <p>Akbar@gmail.com</p>
                     </div>
                 </div>
             </div>

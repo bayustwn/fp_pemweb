@@ -144,4 +144,23 @@ body {
     margin-top: 70px;
 }
 
+.row-1{
+    width: 100%;
+    display: flex;
+    margin-bottom: 20px;
+    justify-content: space-between;
+}
 
+.row-1 div:nth-child(1){
+    align-self: flex-start;
+    font-family: "Tenor Sans";
+    background-color: #1A1A1A;
+    color: #DEDEDE; 
+    border-radius: 25px;
+    padding-left: 40px;
+    padding-right: 250px;
+}
+
+.tim-container h1{
+    font-family: "Krona One";
+}
