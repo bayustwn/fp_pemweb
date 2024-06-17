@@ -1,0 +1,148 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    height: 100vh;
+    font-family: "Inter";
+    background-color: #FFE9D3;
+    overflow-y: auto;
+}
+
+.navbar {
+    display: flex;
+    justify-content: center;
+    padding: 30px 20px;
+    position: relative;
+    background: #E0CEBC;
+    margin-bottom: 20px;
+}
+
+.navbar .menu {
+    display: flex;
+    align-items: center;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    gap: 10px;
+}
+
+.navbar .menu li {
+    margin: 0 10px;
+}
+
+.navbar .menu li a {
+    color: #33667E;
+    text-decoration: none;
+    padding: 10px 20px;
+    font-family: "Inter";
+}
+
+.navbar .menu .logo a {
+    font-size: 30px;
+    text-align: center;
+    padding: 0;
+    font-family: "Italiana";
+}
+
+main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.account-container {
+    background-color: #14213D;
+    padding: 40px;
+    border-radius: 30px;
+    text-align: center;
+    width: 400px;
+}
+
+.account-container h1 {
+    margin-top: 0px;
+    color: #FFDFBE;
+    font-size: 32px;
+    margin-bottom: 20px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+form label {
+    font-weight: 200;
+    margin-bottom: 10px;
+    text-align: left;
+    color: #FFDFBE;
+}
+
+form input {
+    font-family: "Inter";
+    font-weight: 500;
+    padding: 10px;
+    border: none;
+    margin-bottom: 15px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    padding: 15px 20px;
+}
+
+form input:focus{
+    outline: none;
+}
+
+form textarea {
+    font-family: "Inter";
+    font-weight: 500;
+    padding: 10px;
+    border: none;
+    margin-bottom: 15px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    padding: 15px 20px;
+}
+
+form textarea:focus{
+    outline: none;
+}
+
+button {
+    font-family: "Inter";
+    font-weight: 600;
+    width: 98%;
+    padding: 14px;
+    background-color: #FFDFBE;
+    border: none;
+    border-radius: 10px;
+    color: black;
+    font-size: 16px;
+    cursor: pointer;
+    border: 2px solid transparent;
+    transition: all 0.5s;
+    align-self: center;
+    margin-top: 8px;
+}
+
+button.logout {
+    font-family: "Inter";
+    font-weight: 600;
+    margin-top: 20px;
+    padding: 14px;
+    background-color: #d74747;
+    border: none;
+    border-radius: 10px;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    border: 2px solid transparent;
+    transition: all 0.5s;
+    align-self: center;
+}
+
+button:hover, button.logout:hover {
+    opacity: 0.8;
+}
+
+#preview{
+    height: 250px;
+}

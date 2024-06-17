@@ -43,7 +43,7 @@ if(isset($_POST['submit'])){
         <button type="submit" class="cari">Cari</button>
     </form>
     <div class="tambah-container">
-    <button class="tambah">Tambah Cafe</button>
+    <a href="tambahCafe.php"><button class="tambah">Tambah Cafe</button></a>
     </div>
     <div class="cafe-container">
     <?php
