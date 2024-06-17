@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Jun 16, 2024 at 01:06 PM
+-- Generation Time: Jun 17, 2024 at 02:56 AM
 -- Server version: 8.0.30
 -- PHP Version: 8.2.19
 
@@ -145,7 +145,7 @@ INSERT INTO `user` (`id`, `email`, `password`, `role`) VALUES
 ('401b52ad-f896-4ef7-98a1-8514b4897f20', 'khususpby5@gmail.com', '$2y$10$7b5v8DkvA4U/85i/LocUoe9CJieTMt2vSOuPKUmBoUNyaXLDuF86u', 'user'),
 ('672a3367-8551-46c6-9c72-77f09aea8b95', 'khususpby@gmail.com', '$2y$10$iXJ334ZYSN.eLmcKoPw.QuzQjFdVrPjmQLhxRvEJl.5oZLdfMJX1q', 'user'),
 ('bd545082-f94a-4d37-9ece-619a9fd878fa', 'kocak@gmail.com', '$2y$10$aF9cXkVpub9jpzTGOCb7PuyLrITlVF/lCAs9ijVocM5foN7JnFf/q', 'user'),
-('d6a39341-3a5c-4536-b276-ea47d1914cd8', 'khususpby55@gmail.com', '$2y$10$Z.boyHxjpreTB/h821NZKuySwH09UDwfMiNvWb/CGnQwfYwEbXBSe', 'user'),
+('d6a39341-3a5c-4536-b276-ea47d1914cd8', 'khususpby20@gmail.com', '$argon2id$v=19$m=65536,t=4,p=1$YnhZcXNmZ0J3MERvUzFiQQ$Fac1Oj8SsydDwDRK1yAwIQQebrW9pwRHilmSOjlOClw', 'user'),
 ('f1c7fd6d-af53-46c4-a755-61584f259bb6', 'bayu@gmail.com', '$2y$10$CcAlbBW5vw3a7mSPgWr1n.e4npe.RRzrfAq.zQ01QoizapsLJt/y6', 'user');
 
 --

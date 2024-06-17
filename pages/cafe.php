@@ -5,6 +5,12 @@ include "../db/koneksi.php";
 $cafe = "SELECT * FROM cafe";
 $result = $conn->query($cafe);
 
+if(isset($_POST['submit'])){
+    $id = $_POST['submit'];
+    header("Location: cafe-info.php?id='$id'");
+    exit();
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -57,9 +63,10 @@ $result = $conn->query($cafe);
                     <img src="../public/assets/time.svg" alt="clock">
                     <p>' . htmlspecialchars($row['jam_buka']) . ' - ' . htmlspecialchars($row['jam_tutup']) . '</p>
                 </div>
-                <button>
-                    Baca Selengkapnya
-                </button>
+                <form action="" method="POST">
+                    <input type="hidden" name="submit" value="'. htmlspecialchars($row['id']) .'">
+                    <input type="submit" value="Baca Selengkapnya">
+                </form>
             </div>
         </div>';
             }
@@ -82,9 +89,10 @@ $result = $conn->query($cafe);
                     <img src="../public/assets/time.svg" alt="clock">
                     <p>' . htmlspecialchars($row['jam_buka']) . ' - ' . htmlspecialchars($row['jam_tutup']) . '</p>
                 </div>
-                <button>
-                    Baca Selengkapnya
-                </button>
+                <form action="" method="POST">
+                    <input type="hidden" name="submit" value="'. htmlspecialchars($row['id']) .'">
+                    <input class="baca" type="submit" value="Baca Selengkapnya">
+                </form>
             </div>
         </div>';
             }
