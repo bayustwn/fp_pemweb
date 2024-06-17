@@ -6,8 +6,10 @@ if (isset($_GET['id'])) {
 
     $sql = "DELETE FROM cafe WHERE id = '$id'";
 
+    $delete_komentar = "DELETE FROM komentar WHERE cafe = '$id'";
+    $res = $conn->query($delete_komentar);
+
     if ($conn->query($sql) === TRUE) {
-       
         header("Location: cafeAtmin.php");
         exit();
     } else {
