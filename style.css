@@ -17,7 +17,9 @@ body {
     justify-content: center;
     align-items: center;
     padding: 30px 20px;
-    position: relative;
+    position: sticky;
+    top: 0;
+    z-index: 100;
 }
 
 .navbar .menu {
@@ -154,6 +156,7 @@ body {
     font-weight: 500;
     line-height: 1.5;
     color: #333;
+    font-family: "Italiana";
 }
 
 .contact a {
@@ -166,6 +169,16 @@ body {
     text-decoration: underline;
     color: #D1B488; 
 }
+
+.contact-container .head{
+    margin-top: 150px;
+    margin-bottom: -190px;
+    position: relative;
+    font-family: "Italiana";
+    font-size: 30px;
+    letter-spacing: 4px;
+}
+
 
 .social-icons {
     margin-top: 20px;

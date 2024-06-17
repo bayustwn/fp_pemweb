@@ -5,6 +5,11 @@ include "../db/koneksi.php";
 $cafe = "SELECT * FROM cafe";
 $result = $conn->query($cafe);
 
+if ($_SESSION['role'] == "user") {
+    header("Location: cafe.php");
+    exit();
+}
+
 if(isset($_POST['submit'])){
     $id = $_POST['submit'];
     header("Location: cafe-info.php?id='$id'");
