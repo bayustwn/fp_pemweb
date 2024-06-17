@@ -35,7 +35,7 @@ if (!isset($_SESSION['email'])) {
     </div>';
 }else{
     echo '
-    <img class="profile" src="../public/assets/profile-icon.svg" alt="profile">';
+    <a href="./account.php"><img class="profile" src="../public/assets/profile-icon.svg" alt="profile"></a>';
 }
 
         ?>

@@ -27,7 +27,7 @@ $result = $conn->query($cafe);
             <li><a href="">List</a></li>
             <li><a href="#">Contact</a></li>
         </ul>
-        <img class="profile" src="../public/assets/profile-icon.svg" alt="profile">
+        <a href="./account.php"><img class="profile" src="../public/assets/profile-icon.svg" alt="profile"></a>
     </div>
     <form action="" method="GET" class="search-container">
         <div class="search">
