@@ -2,16 +2,74 @@
 include "../db/koneksi.php";
 include "../util/isLogin.php";
 
-$id = isset($_GET['id']) ? $_GET['id'] : '';
+function uuidv4()
+{
+    $data = random_bytes(16);
+    $data[6] = chr(ord($data[6]) & 0x0f | 0x40);
+    $data[8] = chr(ord($data[8]) & 0x3f | 0x80);
+    return vsprintf('%s%s-%s-%s-%s-%s%s%s', str_split(bin2hex($data), 4));
+}
 
-$query = "SELECT * FROM cafe WHERE id=" . $id;
-$result=$conn->query($query);
+$id = isset($_GET['id']) ? ($_GET['id']) : '';
+
+$query = "SELECT * FROM cafe WHERE id=$id";
+$result = $conn->query($query);
+
+$komentarQuery = "SELECT * FROM komentar WHERE cafe=$id";
+$komentar_res = $conn->query($komentarQuery);
 
 if ($result && $result->num_rows > 0) {
-  $cafe = $result->fetch_assoc();
+    $cafe = $result->fetch_assoc();
 } else {
-  echo "Cafe tidak ditemukan.";
-  exit();
+    echo "Cafe tidak ditemukan.";
+    exit();
+}
+
+function getUserNameById($userId, $conn) {
+    $safeUserId = $conn->real_escape_string($userId);
+    $query = "SELECT email FROM user WHERE id = '$safeUserId'";
+    $result = $conn->query($query);
+
+    if ($result && $result->num_rows > 0) {
+        $user = $result->fetch_assoc();
+        return $user['email'];
+    }
+    return '';
+}
+
+function getUserIDbyEmail($email, $conn) {
+    $safeEmail = $conn->real_escape_string($email);
+    $query = "SELECT id FROM user WHERE email = '$safeEmail'";
+    $result = $conn->query($query);
+
+    if ($result && $result->num_rows > 0) {
+        $user = $result->fetch_assoc();
+        return $user['id'];
+    }
+    return '';
+}
+
+$uuid = uuidv4();
+$userId = getUserIDbyEmail($_SESSION['email'], $conn);
+$cafeId = $id;
+
+if (isset($_POST['submit'])) {
+    $komentar = $conn->real_escape_string($_POST['comment']);
+
+    if (!empty($komentar)) {
+        $add_komen = "INSERT INTO komentar (id, id_user, komentar, cafe) VALUES ('$uuid', '$userId', '$komentar', $cafeId)";
+        $res = $conn->query($add_komen);
+
+        if ($res) {
+            header("Location: cafe-info.php?id=$cafeId&status=sukses");
+            exit();
+        } else {
+            header("Location: cafe-info.php?id=$cafeId&status=gagal");
+            exit();
+        }
+    } else {
+        echo "Komentar tidak boleh kosong.";
+    }
 }
 ?>
 
@@ -26,35 +84,33 @@ if ($result && $result->num_rows > 0) {
 <body>
 
 <div class="navbar">
-        <ul class="menu">
-            <li><a href="../index.php">Home</a></li>
-            <li><a href="./about.php">About</a></li>
-            <li class="logo"><a href="../index.php">infongopi.</a></li>
-            <li><a href="">List</a></li>
-            <li><a href="#">Contact</a></li>
-        </ul>
-        <a href="./account.php"><img class="profile" src="../public/assets/profile-icon.svg" alt="profile"></a>
-    </div>
+    <ul class="menu">
+        <li><a href="../index.php">Home</a></li>
+        <li><a href="about.php">About</a></li>
+        <li class="logo"><a href="../index.php">infongopi.</a></li>
+        <li><a href="cafe.php">List</a></li>
+        <li><a href="../index.php">Contact</a></li>
+    </ul>
+    <a href="./account.php"><img class="profile" src="../public/assets/profile-icon.svg" alt="profile"></a>
+</div>
 
 <div class="info-container">
   <div class="info">
     <h1><?php echo htmlspecialchars($cafe['nama'], ENT_QUOTES, 'UTF-8'); ?></h1>
     <p><?php echo htmlspecialchars($cafe['lokasi'], ENT_QUOTES, 'UTF-8'); ?></p>
-    <?php
-      echo '
-      <div class="time-container">
+    <div class="instagram-container">
+      <img src="../public/assets/instagram-icon.svg" alt="ig">
+      <p><?php echo htmlspecialchars($cafe['instagram'] ?? 'Belum ada', ENT_QUOTES, 'UTF-8'); ?></p>
+    </div>
+    <div class="time-container">
         <img src="../public/assets/time.svg" alt="clock">
-        <p style="margin: 0px;">' . htmlspecialchars($cafe['jam_buka']) . ' - ' . htmlspecialchars($cafe['jam_tutup']) . '</p>
-      </div>
-      ';
-    ?>
-    <p style="margin-top: 30px;"><strong>Pro : </strong><?php echo htmlspecialchars($cafe['pro'], ENT_QUOTES, 'UTF-8'); ?></p>
-    <p><strong>Cons : </strong> <?php echo htmlspecialchars($cafe['cons'], ENT_QUOTES, 'UTF-8'); ?></p>
+        <p style="margin: 0px;"><?php echo htmlspecialchars($cafe['jam_buka'], ENT_QUOTES, 'UTF-8'); ?> - <?php echo htmlspecialchars($cafe['jam_tutup'], ENT_QUOTES, 'UTF-8'); ?></p>
+    </div>
+    <p style="margin-top: 30px;"><strong>Pro: </strong><?php echo htmlspecialchars($cafe['pro'], ENT_QUOTES, 'UTF-8'); ?></p>
+    <p><strong>Cons: </strong><?php echo htmlspecialchars($cafe['cons'], ENT_QUOTES, 'UTF-8'); ?></p>
   </div>
   <div class="gambar">
-    <?php
-      echo '<img src="../public/cafe/' . htmlspecialchars($row['foto'] ?? "placeholder.jpg") . '" alt="cafe">';
-    ?>
+    <img src="../public/cafe/<?php echo htmlspecialchars($cafe['foto'] ?? "placeholder.jpg", ENT_QUOTES, 'UTF-8'); ?>" alt="cafe">
   </div>
 </div>
 
@@ -62,12 +118,12 @@ if ($result && $result->num_rows > 0) {
   <h1>Menu Cafe</h1>
   <div class="menu-cafe">
     <div class="menu-item">
-    <h3>Nama Menu</h3>
-    <p>Rp.2000</p>
+      <h3>Nama Menu</h3>
+      <p>Rp.2000</p>
     </div>
     <div class="menu-item">
-    <h3>Nama Menu</h3>
-    <p>Rp.2000</p>
+      <h3>Nama Menu</h3>
+      <p>Rp.2000</p>
     </div>
   </div>
 </div>
@@ -75,17 +131,32 @@ if ($result && $result->num_rows > 0) {
 <div class="comment-container">
   <h1>Komentar user</h1>
   <div class="komentar">
-    <p>komen 1</p>
-    <p>komen 1</p>
-    <p>komen 1</p>
-    <p>komen 1</p>
-    <p>komen 1</p>
+    <?php
+    while ($komen = $komentar_res->fetch_assoc()) {
+        echo '<p><strong>' . htmlspecialchars(getUserNameById($komen['id_user'], $conn), ENT_QUOTES, 'UTF-8') . ':</strong> ' . htmlspecialchars($komen['komentar'], ENT_QUOTES, 'UTF-8') . '</p>';
+    }
+    ?>
   </div>
-  <fprm class="input-comment">
-    <input type="text" name="comment" placeholder="Tinggalkan Komentar Anda : ">
-    <input type="submit" value="komentar" name="submit">
-</form>
+  <form action="" class="input-comment" method="POST">
+      
+        <input type="text" name="comment" placeholder="Tinggalkan Komentar Anda: ">
+        <input type="submit" value="komentar" name="submit">
+      
+  </form>
 </div>
+
+<script>
+    window.onload = function() {
+        const urlParams = new URLSearchParams(window.location.search);
+        if (urlParams.has('status')) {
+            if (urlParams.get('status') === 'sukses') {
+                alert('Berhasil menambah komentar.');
+            } else if (urlParams.get('status') === 'gagal') {
+                alert('Terjadi kesalahan. Gagal menambah komentar.');
+            }
+        }
+    };
+</script>
 
 </body>
 </html>

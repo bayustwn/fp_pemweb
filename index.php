@@ -43,7 +43,7 @@ if (!isset($_SESSION['email'])) {
     <div class="content">
             <h1>Bingung ngopi bosq?
                 tenang..</h1>
-            <a href="./pages/cafe.php"><p>iki solusine ></p></a>
+            <a class="hyperlink" href="./pages/cafe.php"><p>iki solusine ></p></a>
         </div>
         <div class="jargon-container">
             <p class="jargon">Tempatnya Info ngopi sesuai bugdet bosq</p>

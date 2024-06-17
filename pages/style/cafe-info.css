@@ -99,21 +99,16 @@ body {
 }
 
 .input-comment{
-    font-weight: 500;
-    width: 85%;
-    padding: 10px;
-    border: none;
-    margin-bottom: 15px;
-    background-color: #ffffff;
-    border-radius: 10px;
-    padding: 15px 20px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding-bottom: 50px;
 }
 
 .input-comment input[type="text"]{
-    width: 50%;
+    width: 90%;
     font-weight: 500;
     border: none;
-    margin-bottom: 15px;
     background-color: #ffffff;
     border-radius: 10px;
     padding: 15px 20px;
@@ -140,4 +135,14 @@ body {
     display: flex;
     align-items: center;
     gap: 10px;
+}
+
+.instagram-container img{
+    width: 17px;
+}
+
+.instagram-container{
+    display: flex;
+    gap: 10px;
+    align-items: center;
 }
