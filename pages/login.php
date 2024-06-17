@@ -18,11 +18,13 @@ if (isset($_SESSION['email'])) {
             $user = mysqli_fetch_assoc($result);
             if (password_verify($pass, $user['password'])) {
                 $_SESSION['email'] = $email;
-                if ($user['role'] == "user") {
-                    header("Location: cafe.php");
-                }else if($user['role'] == "admin"){
-                    $_SESSION['role'] = "admin";
+                $_SESSION['role'] = $user['role'];
+                if ($_SESSION['role'] == 'admin') {
                     header("Location: cafeAtmin.php");
+                    exit();
+                } else if ($_SESSION['role'] == 'user') {
+                    header("Location: cafe.php");
+                    exit();
                 }
                 exit();
             } else {
