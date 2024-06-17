@@ -50,9 +50,13 @@ if (!isset($_SESSION['email'])) {
         </div>
     </div>
     <div id="contact-container" class="contact-container">
-        <div class="contact">
-            <p>CONTACT</p>
+    <div class="contact">
+        <div class="social-icons">
+            <a href="https://instagram.com/bayst_n" target="_blank"><img src="./public/assets/instagram-icon.svg" alt="Instagram"></a>
         </div>
+        <p><a href="mailto:info@infongopi.com">info@infongopi.com</a></p>
     </div>
+</div>
+
 </body>
 </html>

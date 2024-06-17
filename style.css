@@ -127,40 +127,71 @@ body {
 .contact-container{
     margin-top: -0.1%;
     padding: 20px 100px;
-    height: 100vh;
+    height: 95vh;
     text-align: center;
     background: rgb(217,217,217);
     background: linear-gradient(0deg, rgba(217,217,217,1) 0%, rgba(255,167,118,1) 100%);
 }
 
-.contact{
+.contact {
     color: #0F0F0F;
-    font-family: "Syncopate";
+    font-family: Arial, Helvetica, sans-serif;
     font-size: 27px;
-
+    padding: 40px 20px;
+    margin: 0 auto;
+    margin-top: 270px;
+    max-width: 800px;
+    background-color: #f8f9fa;
+    border: 2px solid #e0e0e0;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
 }
 
 .contact p {
-    margin-top: 70px;
+    margin-top: 20px;
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 1.5;
+    color: #333;
 }
 
-.row-1{
-    width: 100%;
+.contact a {
+    color: #0F0F0F;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.contact a:hover {
+    text-decoration: underline;
+    color: #D1B488; 
+}
+
+.social-icons {
+    margin-top: 20px;
     display: flex;
-    margin-bottom: 20px;
-    justify-content: space-between;
+    justify-content: center;
+    gap: 15px;
 }
 
-.row-1 div:nth-child(1){
-    align-self: flex-start;
-    font-family: "Tenor Sans";
-    background-color: #1A1A1A;
-    color: #DEDEDE; 
-    border-radius: 25px;
-    padding-left: 40px;
-    padding-right: 250px;
+.social-icons a {
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    background-color: #ffffff;
+    border-radius: 50%;
+    padding: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s, box-shadow 0.3s;
 }
 
-.tim-container h1{
-    font-family: "Krona One";
+.social-icons a:hover {
+    transform: scale(1.1); 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); 
 }
+
+.social-icons img {
+    width: 100%;
+    height: auto;
+}
+
