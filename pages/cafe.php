@@ -45,7 +45,7 @@ if(isset($_POST['submit'])){
     <div class="cafe-container">
     <?php
     if(isset($_GET['cari'])){
-        $cafe2 = "SELECT * FROM cafe WHERE nama LIKE '%" . $conn->real_escape_string($_GET['cari']) . "%'";
+        $cafe2 = "SELECT * FROM cafe WHERE lokasi LIKE '%" . $conn->real_escape_string($_GET['cari']) . "%'";
         $res = $conn->query($cafe2);
 
         if ($res->num_rows > 0) {
@@ -65,7 +65,7 @@ if(isset($_POST['submit'])){
                 </div>
                 <form action="" method="POST">
                     <input type="hidden" name="submit" value="'. htmlspecialchars($row['id']) .'">
-                    <input type="submit" value="Baca Selengkapnya">
+                    <input class="baca" type="submit" value="Baca Selengkapnya">
                 </form>
             </div>
         </div>';
