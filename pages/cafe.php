@@ -2,7 +2,7 @@
 include "../util/isLogin.php";
 include "../db/koneksi.php";
 
-if ($_SESSION['role'] == "admin") {
+if (isset($_SESSION['role']) && $_SESSION['role'] == "admin") {
     header("Location: cafeAtmin.php");
     exit();
 }
@@ -10,10 +10,9 @@ if ($_SESSION['role'] == "admin") {
 $cafe = "SELECT * FROM cafe";
 $result = $conn->query($cafe);
 
-if(isset($_POST['submit'])){
+if (isset($_POST['submit'])) {
     $id = $_POST['submit'];
     header("Location: cafe-info.php?id='$id'");
-    exit();
 }
 
 ?>

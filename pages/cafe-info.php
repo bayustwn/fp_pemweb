@@ -101,7 +101,7 @@ if (isset($_POST['tambah'])) {
     }
 }
 
-if ($_SESSION['role'] === "admin" && isset($_GET['action']) && $_GET['action'] === 'delete' && isset($_GET['menu_id'])) {
+if (isset($_SESSION['role']) && $_SESSION['role'] === "admin" && isset($_GET['action']) && $_GET['action'] === 'delete' && isset($_GET['menu_id'])) {
     $menu_id = $conn->real_escape_string($_GET['menu_id']);
     $delete_menu_query = "DELETE FROM menu WHERE id = '$menu_id'";
     if ($conn->query($delete_menu_query) === TRUE) {
@@ -166,13 +166,13 @@ if ($_SESSION['role'] === "admin" && isset($_GET['action']) && $_GET['action'] =
         <h3>' . htmlspecialchars($menus['nama']) . '</h3>
         <p>' . htmlspecialchars($menus['harga']) . '</p>';
     
-        if ($_SESSION['role'] === "admin") {
+        if (isset($_SESSION['role']) && $_SESSION['role'] === "admin") {
             echo '
                 <a href="cafe-info.php?id=' . $cafeId . '&action=delete&menu_id=' . $menus['id'] . '">
                     <img style="width:20px;" src="../public/assets/remove-icon.svg" alt="remove">
                 </a>
             ';
-        }
+        }        
     
     echo '
     </div>';
